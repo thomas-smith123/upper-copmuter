@@ -1,7 +1,7 @@
-﻿Build started 5/21/2017 5:24:23 PM.
+﻿Build started 5/21/2017 6:20:13 PM.
      1>Project "D:\bs\qwewq\qwewq\qwewq\qwewq.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\qwewq.unsuccessfulbuild".
+         Creating "Debug\qwewq.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
          All outputs are up-to-date.
@@ -29,4 +29,4 @@
 
 生成成功。
 
-Time Elapsed 00:00:03.99
+Time Elapsed 00:00:04.49
