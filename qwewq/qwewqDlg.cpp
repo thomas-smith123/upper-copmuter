@@ -78,6 +78,7 @@ BEGIN_MESSAGE_MAP(CqwewqDlg, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT1, &CqwewqDlg::OnEnChangeEdit1)
 	ON_CBN_SELCHANGE(IDC_COMBO2, &CqwewqDlg::OnCbnSelchangeCombo2)
 	ON_BN_CLICKED(IDC_BUTTON1, &CqwewqDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CqwewqDlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -374,8 +375,33 @@ void CqwewqDlg::OnBnClickedButton1()
 	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 	UpdateData(true);//读取编辑框内容  
 	CString sText;
-m_EditSend.GetWindowText(sText);
-m_mscomm.put_Output(COleVariant(sText));
+		
+	m_EditSend.GetWindowText(sText);
+	//m_mscomm.put_Output(COleVariant(sText));
+	if(this->IsDlgButtonChecked(IDC_CHECK1))
+		m_mscomm.put_Output(COleVariant(sText+"\r\n"));
+	else
+		m_mscomm.put_Output(COleVariant(sText));
 //	m_mscomm.put_Output(COleVariant(m_EditSend));//发送数据   
 	UpdateData(false);//更新编辑框内容
+}
+
+
+BOOL CqwewqDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
+    {
+        // 如果消息是键盘按下事件，且是Entert键，执行以下代码（什么都不做，你可以自己添加想要的代码）
+        return TRUE;
+    }
+	return CDialogEx::PreTranslateMessage(pMsg);
+}
+
+
+void CqwewqDlg::OnBnClickedButton2()
+{
+	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	GetDlgItem(IDC_EDIT1)->GetWindowText(m_EditReceive);
+	GetDlgItem(IDC_EDIT1)->SetWindowText(_T("")); 
 }

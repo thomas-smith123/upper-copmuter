@@ -48,4 +48,6 @@ public:
 	CComboBox m_combol5;
 	CEdit m_EditSend;
 	afx_msg void OnBnClickedButton1();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnBnClickedButton2();
 };
