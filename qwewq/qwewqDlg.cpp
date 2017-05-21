@@ -377,6 +377,7 @@ void CqwewqDlg::OnBnClickedButton1()
 	CString sText;
 		
 	m_EditSend.GetWindowText(sText);
+
 	//m_mscomm.put_Output(COleVariant(sText));
 	if(this->IsDlgButtonChecked(IDC_CHECK1))
 		m_mscomm.put_Output(COleVariant(sText+"\r\n"));
