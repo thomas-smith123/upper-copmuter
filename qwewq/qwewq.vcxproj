@@ -98,6 +98,8 @@
     <None Include="E:\nuc.bmp" />
     <None Include="ReadMe.txt" />
     <None Include="res\nuc.bmp" />
+    <None Include="res\nuc.ico" />
+    <None Include="res\nuc1.ico" />
     <None Include="res\qwewq.ico" />
     <None Include="res\qwewq.rc2" />
   </ItemGroup>

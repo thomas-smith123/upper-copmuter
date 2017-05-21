@@ -65,6 +65,7 @@ void CqwewqDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO3, m_combol3);
 	DDX_Control(pDX, IDC_COMBO4, m_combol4);
 	DDX_Control(pDX, IDC_COMBO5, m_combol5);
+	DDX_Control(pDX, IDC_EDIT2, m_EditSend);
 }
 
 BEGIN_MESSAGE_MAP(CqwewqDlg, CDialogEx)
@@ -76,6 +77,7 @@ BEGIN_MESSAGE_MAP(CqwewqDlg, CDialogEx)
 	ON_CBN_SELCHANGE(IDC_COMBO1, &CqwewqDlg::OnCbnSelchangeCombo1)
 	ON_EN_CHANGE(IDC_EDIT1, &CqwewqDlg::OnEnChangeEdit1)
 	ON_CBN_SELCHANGE(IDC_COMBO2, &CqwewqDlg::OnCbnSelchangeCombo2)
+	ON_BN_CLICKED(IDC_BUTTON1, &CqwewqDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -107,8 +109,11 @@ BOOL CqwewqDlg::OnInitDialog()
 
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
 	//  执行此操作
-	SetIcon(m_hIcon, TRUE);			// 设置大图标
-	SetIcon(m_hIcon, FALSE);		// 设置小图标
+	HICON m_hIcon1 = AfxGetApp()->LoadIcon(IDI_ICON1);
+	HICON m_hIcon2 = AfxGetApp()->LoadIcon(IDI_ICON2);
+
+	SetIcon(m_hIcon1, TRUE);			// 设置大图标
+	SetIcon(m_hIcon2, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
 	((CComboBox*)GetDlgItem(IDC_COMBO2))->SetCurSel(0);
@@ -116,6 +121,7 @@ BOOL CqwewqDlg::OnInitDialog()
 	((CComboBox*)GetDlgItem(IDC_COMBO3))->SetCurSel(0);
 	((CComboBox*)GetDlgItem(IDC_COMBO4))->SetCurSel(3);
 	((CComboBox*)GetDlgItem(IDC_COMBO5))->SetCurSel(0);
+
 	 CImage myImage;
 	myImage.Load(_T("d:\\bs\\qwewq\\qwewq\\qwewq\\res\\nuc.bmp"));
 
@@ -126,6 +132,8 @@ BOOL CqwewqDlg::OnInitDialog()
 	pDC->SetStretchBltMode(STRETCH_HALFTONE);
 	myImage.Draw(pDC->m_hDC, rect);
 	long lReg;
+
+
 HKEY hKey;
 DWORD MaxValueLength;
 DWORD dwValueNumber;
@@ -358,4 +366,16 @@ void CqwewqDlg::OnEnChangeEdit1()
 void CqwewqDlg::OnCbnSelchangeCombo2()
 {
 	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+}
+
+
+void CqwewqDlg::OnBnClickedButton1()
+{
+	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	UpdateData(true);//读取编辑框内容  
+	CString sText;
+m_EditSend.GetWindowText(sText);
+m_mscomm.put_Output(COleVariant(sText));
+//	m_mscomm.put_Output(COleVariant(m_EditSend));//发送数据   
+	UpdateData(false);//更新编辑框内容
 }

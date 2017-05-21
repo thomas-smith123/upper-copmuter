@@ -46,4 +46,6 @@ public:
 	CComboBox m_combol3;
 	CComboBox m_combol4;
 	CComboBox m_combol5;
+	CEdit m_EditSend;
+	afx_msg void OnBnClickedButton1();
 };

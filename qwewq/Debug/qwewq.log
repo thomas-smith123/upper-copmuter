@@ -1,10 +1,16 @@
-﻿Build started 5/21/2017 10:06:36 AM.
+﻿Build started 5/21/2017 11:41:22 AM.
      1>Project "D:\bs\qwewq\qwewq\qwewq\qwewq.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\qwewq.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-         All outputs are up-to-date.
+         F:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\qwewq.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt qwewq.cpp qwewqDlg.cpp
+         qwewqDlg.cpp
+     1>d:\bs\qwewq\qwewq\qwewq\qwewqdlg.cpp(169): warning C4018: “<”: 有符号/无符号不匹配
+         正在生成代码...
+         正在编译...
+         qwewq.cpp
+         正在生成代码...
        ResourceCompile:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /l"0x0804" /IDebug\ /nologo /fo"Debug\qwewq.res" qwewq.rc 
        ManifestResourceCompile:
@@ -29,4 +35,4 @@
 
 生成成功。
 
-Time Elapsed 00:00:02.89
+Time Elapsed 00:00:09.66
