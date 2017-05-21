@@ -289,6 +289,7 @@ void CqwewqDlg::OnCommMscomm1()
         }  
     }  
     UpdateData(FALSE);
+	GetDlgItem(IDC_EDIT1)->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_BOTTOM,0),0);//滚动条自动下翻
 }
 
 
@@ -374,15 +375,46 @@ void CqwewqDlg::OnBnClickedButton1()
 {
 	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 	UpdateData(true);//读取编辑框内容  
-	CString sText;
-		
+	CByteArray hexdata;
+	CString sText,a=0;	
 	m_EditSend.GetWindowText(sText);
-
+//	if(this->IsDlgButtonChecked(IDC_CHECK2))
+//	{
+		
+//		int len=String2Hex(sText,hexdata);
+	//	sText=hexdata;
+//	}
 	//m_mscomm.put_Output(COleVariant(sText));
 	if(this->IsDlgButtonChecked(IDC_CHECK1))
-		m_mscomm.put_Output(COleVariant(sText+"\r\n"));
+	{
+		if(this->IsDlgButtonChecked(IDC_CHECK2))
+		{
+			int len=String2Hex(sText,hexdata); //此处返回的len可以用于计算发送了多少个十六进制数
+			m_mscomm.put_Output(COleVariant(hexdata));
+			m_mscomm.put_Output(COleVariant(a+"\r\n"));
+		}
+		else
+		{
+	//		int len=String2Hex(sText,hexdata); //此处返回的len可以用于计算发送了多少个十六进制数
+			m_mscomm.put_Output(COleVariant(sText+"\r\n"));
+		}
+	}
 	else
-		m_mscomm.put_Output(COleVariant(sText));
+		{
+			if(this->IsDlgButtonChecked(IDC_CHECK2))
+			{
+				int len=String2Hex(sText,hexdata); //此处返回的len可以用于计算发送了多少个十六进制数
+				m_mscomm.put_Output(COleVariant(hexdata));
+			}
+			else
+			{
+		//		int len=String2Hex(sText,hexdata); //此处返回的len可以用于计算发送了多少个十六进制数
+				m_mscomm.put_Output(COleVariant(sText));
+			}
+		}
+	//	m_mscomm.put_Output(COleVariant(sText+"\r\n"));
+//	else
+//		m_mscomm.put_Output(COleVariant(sText));
 //	m_mscomm.put_Output(COleVariant(m_EditSend));//发送数据   
 	UpdateData(false);//更新编辑框内容
 }
@@ -405,4 +437,45 @@ void CqwewqDlg::OnBnClickedButton2()
 	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 	GetDlgItem(IDC_EDIT1)->GetWindowText(m_EditReceive);
 	GetDlgItem(IDC_EDIT1)->SetWindowText(_T("")); 
+}
+int CqwewqDlg::String2Hex(CString str, CByteArray &senddata)
+{
+	int hexdata,lowhexdata;
+	int hexdatalen=0;
+	int len=str.GetLength();
+	senddata.SetSize(len/2);
+	for(int i=0;i<len;)
+	{
+		char lstr,hstr=str[i];
+		if(hstr==' ')
+		{
+			i++;
+			continue;
+		}
+		i++;
+		if(i>=len)
+		break;
+		lstr=str[i];
+		hexdata=ConvertHexChar(hstr);
+		lowhexdata=ConvertHexChar(lstr);
+		if((hexdata==16)||(lowhexdata==16))
+			break;
+		else
+			hexdata=hexdata*16+lowhexdata;
+		i++;
+		senddata[hexdatalen]=(char)hexdata;
+		hexdatalen++;
+	}
+	senddata.SetSize(hexdatalen);
+	return hexdatalen;
+}
+char CqwewqDlg::ConvertHexChar(char ch)
+{
+	if((ch>='0')&&(ch<='9'))
+	return ch-0x30;
+	else if((ch>='A')&&(ch<='F'))
+	return ch-'A'+10;
+	else if((ch>='a')&&(ch<='f'))
+	return ch-'a'+10;
+	else return (-1);
 }

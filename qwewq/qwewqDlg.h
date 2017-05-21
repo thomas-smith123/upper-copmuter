@@ -50,4 +50,7 @@ public:
 	afx_msg void OnBnClickedButton1();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedButton2();
+	int String2Hex(CString str, CByteArray &senddata);
+	char ConvertHexChar(char ch);
+	//void OnBnClickedCheckAutosend()
 };
