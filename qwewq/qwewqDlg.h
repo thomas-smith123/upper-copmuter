@@ -53,4 +53,8 @@ public:
 	int String2Hex(CString str, CByteArray &senddata);
 	char ConvertHexChar(char ch);
 	//void OnBnClickedCheckAutosend()
+	CEdit m_cEditReceive;
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	POINT Old;
+	void resize();
 };

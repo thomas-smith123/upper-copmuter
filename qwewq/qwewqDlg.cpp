@@ -66,6 +66,7 @@ void CqwewqDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO4, m_combol4);
 	DDX_Control(pDX, IDC_COMBO5, m_combol5);
 	DDX_Control(pDX, IDC_EDIT2, m_EditSend);
+	DDX_Control(pDX, IDC_EDIT1, m_cEditReceive);
 }
 
 BEGIN_MESSAGE_MAP(CqwewqDlg, CDialogEx)
@@ -79,6 +80,7 @@ BEGIN_MESSAGE_MAP(CqwewqDlg, CDialogEx)
 	ON_CBN_SELCHANGE(IDC_COMBO2, &CqwewqDlg::OnCbnSelchangeCombo2)
 	ON_BN_CLICKED(IDC_BUTTON1, &CqwewqDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CqwewqDlg::OnBnClickedButton2)
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -127,11 +129,11 @@ BOOL CqwewqDlg::OnInitDialog()
 	myImage.Load(_T("d:\\bs\\qwewq\\qwewq\\qwewq\\res\\nuc.bmp"));
 
 	CRect rect;
-	CWnd *pWnd = GetDlgItem(IDC_STATIC); // (这是在此资源创建的类的内部, 若是在外部, 可先通过获得CMainFrame的指针, 再通过pMianFrame->GetDlgItem(IDCk_MY_PIC)来获取)
+/*	CWnd *pWnd = GetDlgItem(IDC_STATIC); // (这是在此资源创建的类的内部, 若是在外部, 可先通过获得CMainFrame的指针, 再通过pMianFrame->GetDlgItem(IDCk_MY_PIC)来获取)
 	CDC *pDC = pWnd->GetDC();
 	pWnd->GetClientRect(&rect);
 	pDC->SetStretchBltMode(STRETCH_HALFTONE);
-	myImage.Draw(pDC->m_hDC, rect);
+	myImage.Draw(pDC->m_hDC, rect);*/
 	long lReg;
 
 
@@ -202,7 +204,10 @@ VirtualFree(pValueName, 0, MEM_RELEASE);
 VirtualFree(pCOMNumber, 0, MEM_RELEASE);
 }
 
-
+//CRect rect;    
+GetClientRect(&rect);     //取客户区大小  
+Old.x=rect.right-rect.left;
+Old.y=rect.bottom-rect.top;
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -478,4 +483,49 @@ char CqwewqDlg::ConvertHexChar(char ch)
 	else if((ch>='a')&&(ch<='f'))
 	return ch-'a'+10;
 	else return (-1);
+}
+
+
+void CqwewqDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	// TODO: ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
+	 if(nType==SIZE_RESTORED||nType==SIZE_MAXIMIZED)
+	{
+		resize();
+	}
+}
+void CqwewqDlg::resize()
+{
+	float fsp[2];
+	POINT Newp; //获取现在对话框的大小
+	CRect recta;    
+	GetClientRect(&recta);     //取客户区大小  
+	Newp.x=recta.right-recta.left;
+	Newp.y=recta.bottom-recta.top;
+	fsp[0]=(float)Newp.x/Old.x;
+	fsp[1]=(float)Newp.y/Old.y;
+	CRect Rect;
+	int woc;
+	CPoint OldTLPoint,TLPoint; //左上角
+	CPoint OldBRPoint,BRPoint; //右下角
+	HWND  hwndChild=::GetWindow(m_hWnd,GW_CHILD);  //列出所有控件  
+	while(hwndChild)    
+	{    
+	woc=::GetDlgCtrlID(hwndChild);//取得ID
+	GetDlgItem(woc)->GetWindowRect(Rect);  
+	ScreenToClient(Rect);  
+	OldTLPoint = Rect.TopLeft();  
+	TLPoint.x = long(OldTLPoint.x*fsp[0]);  
+	TLPoint.y = long(OldTLPoint.y*fsp[1]);  
+	OldBRPoint = Rect.BottomRight();  
+	BRPoint.x = long(OldBRPoint.x *fsp[0]);  
+	BRPoint.y = long(OldBRPoint.y *fsp[1]);  
+	Rect.SetRect(TLPoint,BRPoint);  
+	GetDlgItem(woc)->MoveWindow(Rect,TRUE);
+	hwndChild=::GetWindow(hwndChild, GW_HWNDNEXT);    
+	}
+	Old=Newp;
+
 }
