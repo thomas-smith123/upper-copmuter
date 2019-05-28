@@ -1,40 +1,10 @@
-﻿Build started 5/22/2017 5:22:15 PM.
-     1>Project "D:\bs\qwewq\qwewq\qwewq\qwewq.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug\qwewq.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         All outputs are up-to-date.
-         F:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\qwewq.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt qwewq.cpp qwewqDlg.cpp
-         qwewq.cpp
-         正在生成代码...
-         正在编译...
-         qwewqDlg.cpp
-     1>d:\bs\qwewq\qwewq\qwewq\qwewqdlg.cpp(171): warning C4018: “<”: 有符号/无符号不匹配
-     1>d:\bs\qwewq\qwewq\qwewq\qwewqdlg.cpp(454): warning C4244: “初始化”: 从“wchar_t”转换到“char”，可能丢失数据
-     1>d:\bs\qwewq\qwewq\qwewq\qwewqdlg.cpp(463): warning C4244: “=”: 从“wchar_t”转换到“char”，可能丢失数据
-         正在生成代码...
-       ResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /l"0x0804" /IDebug\ /nologo /fo"Debug\qwewq.res" qwewq.rc 
-       ManifestResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         F:\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\bs\qwewq\qwewq\Debug\qwewq.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:"Debug\qwewq.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\bs\qwewq\qwewq\Debug\qwewq.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\bs\qwewq\qwewq\Debug\qwewq.lib" /MACHINE:X86 Debug\qwewq.res
-         Debug\qwewq.exe.embed.manifest.res
-         Debug\mscomm1.obj
-         Debug\qwewq.obj
-         Debug\qwewqDlg.obj
-         Debug\stdafx.obj
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\qwewq.exe.embed.manifest" /manifest Debug\qwewq.exe.intermediate.manifest "F:\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
-         All outputs are up-to-date.
-       LinkEmbedManifest:
-         All outputs are up-to-date.
-         qwewq.vcxproj -> D:\bs\qwewq\qwewq\Debug\qwewq.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\qwewq.unsuccessfulbuild".
-         Touching "Debug\qwewq.lastbuildstate".
-     1>Done Building Project "D:\bs\qwewq\qwewq\qwewq\qwewq.vcxproj" (build target(s)).
-
-生成成功。
-
-Time Elapsed 00:00:04.26
+﻿  stdafx.cpp
+  mscomm1.cpp
+  qwewq.cpp
+  qwewqDlg.cpp
+d:\jrd\upper-copmuter-master\qwewq\qwewqdlg.cpp(171): warning C4018: “<”: 有符号/无符号不匹配
+d:\jrd\upper-copmuter-master\qwewq\qwewqdlg.cpp(454): warning C4244: “初始化”: 从“wchar_t”转换到“char”，可能丢失数据
+d:\jrd\upper-copmuter-master\qwewq\qwewqdlg.cpp(463): warning C4244: “=”: 从“wchar_t”转换到“char”，可能丢失数据
+  正在生成代码...
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+  qwewq.vcxproj -> D:\jrd\upper-copmuter-master\Debug\qwewq.exe
